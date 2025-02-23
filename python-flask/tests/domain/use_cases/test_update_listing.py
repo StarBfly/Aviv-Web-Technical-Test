@@ -27,3 +27,6 @@ class TestUpdateListing:
         assert updated_listing["name"] == "My new name"
         assert updated_listing["created_date"] == "2023-01-18T08:50:03.761691"
         assert updated_listing["updated_date"] == "2023-01-19T08:50:03.761691"
+        assert len(updated_listing["price_history"]) == 2
+        assert updated_listing["price_history"][0]["listing_id"] == 1
+        assert updated_listing["price_history"][1]["listing_id"] == 1

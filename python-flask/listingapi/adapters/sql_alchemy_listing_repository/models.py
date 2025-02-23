@@ -7,7 +7,6 @@ from sqlalchemy import (
     Float,
     ForeignKey,
     Integer,
-    Numeric,
     String,
     TIMESTAMP,
     func,
@@ -88,7 +87,7 @@ class ListingPriceHistoryModel(Base):
 
     id = Column(Integer, primary_key=True, autoincrement=True)
     listing_id = Column(Integer, ForeignKey(ListingModel.id), nullable=False)
-    price = Column(Numeric(10, 2), nullable=False)
+    price = Column(Float, nullable=False)
     created_date = Column(TIMESTAMP, server_default=func.now(), nullable=False)
 
     # Define relationship with ListingModel
@@ -98,7 +97,9 @@ class ListingPriceHistoryModel(Base):
         listing_price_history = {
             "id": self.id,
             "listing_id": self.listing_id,
-            "price": float(self.price),
-            "created_date": self.created_date if self.created_date else None,
+            "price": self.price,
+            "created_date": self.created_date.isoformat()
+            if self.created_date
+            else None,
         }
         return listing_price_history

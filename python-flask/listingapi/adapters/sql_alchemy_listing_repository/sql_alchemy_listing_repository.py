@@ -31,14 +31,14 @@ class SqlAlchemyListingRepository(ports.ListingRepository):
         listings = [listing.to_dict() for listing in listing_models]
         return listings
 
-    def _get_listing_by_id(self, listing_id: int):
+    def _get_listing_by_id(self, listing_id: int) -> models.ListingModel:
         existing_listing = self.db_session.get(models.ListingModel, listing_id)
         if existing_listing is None:
             raise exceptions.ListingNotFound
 
         return existing_listing
 
-    def get_listing_by_id(self, listing_id: int) -> dict:
+    def get(self, listing_id: int) -> dict:
         listing = self._get_listing_by_id(listing_id)
 
         return listing.to_dict()

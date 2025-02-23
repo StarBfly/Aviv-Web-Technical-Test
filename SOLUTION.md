@@ -49,12 +49,60 @@ This section contains additional questions your expected to answer before the de
 
 - **What is missing with your implementation to go to production?**
 
+### Minor Code Refactoring
+* I would create a separate package for models, with each model stored in its own module. This will enhance maintainability, readability, and scalability in future iterations.
+Since every entity already has its own module, it makes sense to store the corresponding models in separate modules as well.
+* Additionally, introducing a Factory pattern for use cases could be beneficial. This would help make the architecture more modular and layered, improving flexibility for future enhancements.
+
+### Add exception handling
+The application needs better user-friendly Error handling.
+
+### Unit Tests
+I would expand unit tests to increase test coverage and ensure more robust validation of business logic.
+
+### Database Maintenance
+Integrating the Alembic migration tool would simplify version upgrades and downgrades, making database schema management easier and more maintainable.
+
+### API UI & Documentation
+Adding Swagger would significantly improve user experience and documentation, making it easier to explore and interact with the API.
+
 - **How would you deploy your implementation?**
+
+For deployment, I would likely opt for a basic VPS approach, as the project is still in its early stages. The primary goal at this point is to ensure a fast and cost-efficient solution. Given these requirements, I believe AWS EC2 combined with PostgreSQL on RDS would be a suitable choice.
+
+For a serverless architecture, I would consider AWS Fargate with Amazon RDS. While AWS Lambda is generally more cost-effective than Fargate, it may not be the best fit for this use case due to cold start latency, which could impact performance.
 
 - **If you had to implement the same application from scratch, what would you do differently?**
 
+If I were to build this application from scratch, I would likely choose **FastAPI** over Flask due. Here’s why:
+
+**1. Performance**
+FastAPI is significantly **faster** than Flask, thanks to its asynchronous capabilities and efficient request handling.
+
+**2. Built-in Async Database Support**
+FastAPI **natively supports async SQLAlchemy**. In contrast, Flask requires **additional setup** for async operations. Native async support improves scalability and responsiveness, especially for high-concurrency applications.
+
+**3. Seamless Data Validation**
+FastAPI works **beautifully with Pydantic** out of the box, providing **automatic request validation** for query parameters and body payloads. Flask, on the other hand, requires additional setup and custom validation logic.
+
+**4. Automatic Interactive API Documentation**
+FastAPI includes **Swagger UI** default, eliminating the need for third-party tools like Flask-Swagger. **Schemas and documentation are auto-generated**, saving time and effort while ensuring up-to-date API documentation.
+
+**5. Dependency Injection for Cleaner Code**
+FastAPI's **dependency injection system** simplifies code maintenance by managing database connections (and authentication logic, if it will be needed in the future) and makes it clean.
+
+**6. A Fast-Growing, Modern Framework**
+FastAPI is a **modern, rapidly evolving** framework with an active and growing community. And it has many regular improvements and updates .
+
+
 - **The application aims at storing hundreds of thousands listings and millions of prices, and be accessed by millions
   of users every month. What should be anticipated and done to handle it?**
+
+
+For future scalability, incorporating a NoSQL database to store historical data could be a valuable enhancement, for better performance. Alternatively, storing the history data in a data warehouse like BigQuery or Redshift would enable efficient SQL-based querying while also providing historical data analysis and trend investigation (for example to track price changes pver time).
+
+To optimize performance, history updates could be handled asynchronously as a background job, ensuring that listing creation and updates remain fast and responsive. These background tasks could be executed using Amazon Batch or managed through a custom ETL pipeline, streamlining data processing without impacting the core application’s performance.
+
 
   NB: You must update the [given architecture schema](./schemas/Aviv_Technical_Test_Architecture.drawio) by importing it
   on [diagrams.net](https://app.diagrams.net/) 

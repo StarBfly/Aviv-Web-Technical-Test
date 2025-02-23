@@ -1,7 +1,7 @@
 CREATE TABLE IF NOT EXISTS public.listing_price_history (
     id SERIAL PRIMARY KEY,
     listing_id INT NOT NULL,
-    price DECIMAL(10,2) NOT NULL,
+    price DOUBLE PRECISION NOT NULL,
     created_date TIMESTAMP NOT NULL DEFAULT NOW(),
     FOREIGN KEY (listing_id) REFERENCES public.listing(id)
         ON DELETE CASCADE
