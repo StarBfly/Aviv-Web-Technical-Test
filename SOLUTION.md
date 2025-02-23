@@ -57,8 +57,8 @@ Since every entity already has its own module, it makes sense to store the corre
 ### Add exception handling
 The application needs better user-friendly Error handling.
 
-### Unit Tests
-I would expand unit tests to increase test coverage and ensure more robust validation of business logic.
+### Unit Tests and CI
+I would expand unit tests to increase test coverage and ensure more robust validation of business logic and add the intergration tests with the CI to run all the QC.
 
 ### Database Maintenance
 Integrating the Alembic migration tool would simplify version upgrades and downgrades, making database schema management easier and more maintainable.
@@ -103,6 +103,8 @@ For future scalability, incorporating a NoSQL database to store historical data 
 
 To optimize performance, history updates could be handled asynchronously as a background job, ensuring that listing creation and updates remain fast and responsive. These background tasks could be executed using Amazon Batch or managed through a custom ETL pipeline, streamlining data processing without impacting the core application’s performance.
 
+
+I've changed the schema a bit, but I believe the changes in backend do not effect this schema in any significant way. 
 
   NB: You must update the [given architecture schema](./schemas/Aviv_Technical_Test_Architecture.drawio) by importing it
   on [diagrams.net](https://app.diagrams.net/) 
