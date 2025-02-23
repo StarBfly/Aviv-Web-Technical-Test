@@ -37,3 +37,6 @@ _sql_alchemy_listing_repository = adapters.SqlAlchemyListingRepository(_db_sessi
 persist_listing_use_case = use_cases.PersistListing(_sql_alchemy_listing_repository)
 retrieve_listings_use_case = use_cases.RetrieveListings(_sql_alchemy_listing_repository)
 update_listing_use_case = use_cases.UpdateListing(_sql_alchemy_listing_repository)
+retrieve_price_history_use_case = use_cases.RetrieveListingsPriceHistory(
+    _sql_alchemy_listing_repository
+)
