@@ -17,5 +17,9 @@ class ListingRepository(abc.ABC):
         pass
 
     @abc.abstractmethod
+    def get(self, listing_id: int) -> dict:
+        pass
+
+    @abc.abstractmethod
     def update(self, id_: int, listing: entities.ListingEntity) -> dict:
         pass

@@ -23,7 +23,7 @@ run:  ## Run a python-flask container
 
 .PHONY: stop
 stop:  ## Stop the running containers
-	$(DOCKER_COMPOSE) down --rm
+	$(DOCKER_COMPOSE) down
 
 .PHONY: build
 build: ## Build the python docker image

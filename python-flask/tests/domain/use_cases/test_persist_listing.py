@@ -1,3 +1,5 @@
+from datetime import datetime
+
 import pytest
 from freezegun import freeze_time
 
@@ -58,3 +60,6 @@ class TestPersistListing:
         assert persisted_listing_dict["contact_phone_number"] == ""
         assert persisted_listing_dict["created_date"] == "2023-01-18T08:50:03.761691"
         assert persisted_listing_dict["updated_date"] == "2023-01-18T08:50:03.761691"
+        assert len(persisted_listing_dict["price_history"]) == 1
+        assert persisted_listing_dict["price_history"][0]["listing_id"] == 1
+        assert persisted_listing_dict["price_history"][0]["price"] == 720000.0

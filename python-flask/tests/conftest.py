@@ -41,3 +41,10 @@ def update_listing_use_case(
     listing_repository: ports.ListingRepository,
 ) -> use_cases.UpdateListing:
     return use_cases.UpdateListing(listing_repository)
+
+
+@pytest.fixture
+def retrieve_history_use_case(
+    listing_repository: ports.ListingRepository,
+) -> use_cases.RetrieveListingsPriceHistory:
+    return use_cases.RetrieveListingsPriceHistory(listing_repository)
